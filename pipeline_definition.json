@@ -10,7 +10,8 @@
   },
   "REQUIREMENTS": {},
   "ORIGINS": [
-    "raw_short_read_dna"
+    "raw_short_read_dna",
+    "raw_short_read_dna_single"
   ],
   "SAMPLE_TYPES": [],
   "FILE_TYPES": [
@@ -47,6 +48,31 @@
       "FILES": {
         "clean_read1": "gz_fastq",
         "clean_read2": "gz_fastq"
+      }
+    },
+        {
+      "NAME": "raw_short_read_dna_single",
+      "FILES": {
+        "reads": "gz_fastq",
+      }
+    },
+    {
+      "NAME": "filter_human_dna_single",
+      "DEPENDENCIES": [
+        "adpater_removal_single"
+      ],
+      "FILES": {
+        "nonhuman_reads": "gz_fastq",
+        "bam": "bam"
+      }
+    },
+    {
+      "NAME": "adapter_removal_single",
+      "DEPENDENCIES": [
+        "raw_short_read_dna_single"
+      ],
+      "FILES": {
+        "clean_reads": "gz_fastq",
       }
     }
   ]

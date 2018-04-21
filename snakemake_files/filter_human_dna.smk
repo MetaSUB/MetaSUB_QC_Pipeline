@@ -38,3 +38,28 @@ rule filter_human_dna:
            '> {output.bam} ')
         cmd = ''.join(cmd)
         shell(cmd)
+
+rule filter_human_dna_single:
+    input:
+        reads = config['adapter_removal_single']['clean_read1'],
+    output:
+        nonhuman_reads = config['filter_human_dna_single']['nonhuman_reads'],
+        bam = config['filter_human_dna_single']['bam']
+    params:
+        bt2 = config['bt2']['exc']['filepath'],
+        db = config['filter_human_dna']['db']['filepath']
+    threads: int(config['filter_human_dna']['threads'])
+    resources:
+        time = int(config['filter_human_dna']['time']),
+        n_gb_ram = int(config['filter_human_dna']['ram'])
+    run:
+        cmd = (' {params.bt2} '
+           '-p {threads} '
+           '--very-fast '
+           ' --un-conc-gz {output.nonhuman_reads} ' ,
+           ' -x {params.db} '
+           ' -U {input.reads1} '
+           '| samtools view -F 4 -b '
+           '> {output.bam} ')
+        cmd = ''.join(cmd)
+        shell(cmd)
