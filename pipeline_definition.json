@@ -1,6 +1,6 @@
 {
   "NAME": "metasub_qc_cap",
-  "VERSION": "1.0",
+  "VERSION": "1.1",
   "SNAKEMAKE": {
     "DIR": "snakemake_files",
     "CONF": "pipeline_config.py"
@@ -42,6 +42,7 @@
     },
     {
       "NAME": "adapter_removal",
+      "OPTIONS": ["NO_REGISTER"],
       "DEPENDENCIES": [
         "raw_short_read_dna"
       ],
@@ -50,7 +51,16 @@
         "clean_read2": "gz_fastq"
       }
     },
-        {
+    {
+      "NAME": "adapter_removal_num_reads",
+      "DEPENDENCIES": [
+        "adapter_removal"
+      ],
+      "FILES": {
+        "num_reads": "txt"
+      }
+    },
+    {
       "NAME": "raw_short_read_dna_single",
       "FILES": {
         "reads": "gz_fastq",

@@ -4,8 +4,8 @@ rule remove_adapters:
         reads1 = getOriginResultFiles(config, "raw_short_read_dna", "read1"),
         reads2 = getOriginResultFiles(config, "raw_short_read_dna", "read2"),
     output:
-        clean_reads1 = config['adapter_removal']['clean_read1'],
-        clean_reads2 = config['adapter_removal']['clean_read2'],
+        clean_reads1 = temp(config['adapter_removal']['clean_read1']),
+        clean_reads2 = temp(config['adapter_removal']['clean_read2']),
     params:
         arem = config['adapter_removal']['exc']['filepath'],
         basename='temp_{sample_name}'
