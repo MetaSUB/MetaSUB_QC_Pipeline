@@ -1,6 +1,6 @@
 {
   "NAME": "metasub_qc_cap",
-  "VERSION": "1.1",
+  "VERSION": "1.0",
   "SNAKEMAKE": {
     "DIR": "snakemake_files",
     "CONF": "pipeline_config.py"
@@ -10,8 +10,7 @@
   },
   "REQUIREMENTS": {},
   "ORIGINS": [
-    "raw_short_read_dna",
-    "raw_short_read_dna_single"
+    "raw_short_read_dna"
   ],
   "SAMPLE_TYPES": [],
   "FILE_TYPES": [
@@ -42,47 +41,12 @@
     },
     {
       "NAME": "adapter_removal",
-      "OPTIONS": ["NO_REGISTER"],
       "DEPENDENCIES": [
         "raw_short_read_dna"
       ],
       "FILES": {
         "clean_read1": "gz_fastq",
         "clean_read2": "gz_fastq"
-      }
-    },
-    {
-      "NAME": "adapter_removal_num_reads",
-      "DEPENDENCIES": [
-        "adapter_removal"
-      ],
-      "FILES": {
-        "num_reads": "txt"
-      }
-    },
-    {
-      "NAME": "raw_short_read_dna_single",
-      "FILES": {
-        "reads": "gz_fastq",
-      }
-    },
-    {
-      "NAME": "filter_human_dna_single",
-      "DEPENDENCIES": [
-        "adpater_removal_single"
-      ],
-      "FILES": {
-        "nonhuman_reads": "gz_fastq",
-        "bam": "bam"
-      }
-    },
-    {
-      "NAME": "adapter_removal_single",
-      "DEPENDENCIES": [
-        "raw_short_read_dna_single"
-      ],
-      "FILES": {
-        "clean_reads": "gz_fastq",
       }
     }
   ]

@@ -7,7 +7,7 @@ rule count_adapter_removal_reads:
         count = config['adapter_removal_num_reads']['num_reads'],
     run:
         cmd = (
-            'div4() { calc "$1 / 4"; }; '
+            'div4() { divide_by_four $1; }; '
             'zcat {input.reads1} | '
             ' wc -l | '
             'div4 > {output.count} '
