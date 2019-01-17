@@ -1,7 +1,7 @@
 MetaSUB Quality Control Pipeline
 =========
 
-**This pipeline is deprecated, it's functionality has been moved into the [MetaSUB CAP](https://github.com/MetaSUB/MetaSUB_CAP)**
+**This pipeline is deprecated** Its functionality has been moved into the MetaSUB CAP.
 
 This is the quality control pipeline used by MetaSUB. It has two steps
  - remove low quality bases and adapters from reads
